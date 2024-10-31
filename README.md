@@ -54,10 +54,12 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ### Input File:
 1. **`USGS_Wildland_Fire_Combined_Dataset.json`**: Wildfire dataset (GeoJSON) containing fire attributes and boundary information.
    
-### Output File:
+### Output Files:
 3. **`particulate_aqi_summary.csv`**: Contains annual AQI data for PM10 and PM2.5 pollutants in Gresham, OR.
 4. **`updated__aqi_summary.csv`**: Contains the same information as `particulate_aqi_summary.csv` but includes the Max AQI for each year.
 5. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
+
+### Output Tables:
 
 ---
 
