@@ -93,9 +93,13 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 1. **Install Required Libraries**:
 Python (3.8 or later): Ensure you have a compatible version of Python installed.
 `pip install pyproj==3.4.1`
+
 `pip install geojson==2.5.0`
+
 `pip install matplotlib==3.6.2`
+
 `pip install scikit-learn==1.1.3`
+
 `pip install statsmodels==0.13.2`
 
 ---
