@@ -2,7 +2,7 @@
 # Wildfire Smoke Impact and AQI Analysis
 
 ## Project Goal
-The goal of this project is to assess the impact of wildfire smoke on air quality in Gresham, OR, from 1961 to 2021 and forecast potential trends through 2050. Using geographic wildfire data, air quality data from the EPA’s AQS API, and time series modeling, we analyze how smoke impact correlates with AQI for particulate matter. 
+The goal of this project is to assess the impact of wildfire smoke on air quality in Gresham, OR, from 1961 to 2021 and forecast potential trends through 2050. Using geographic wildfire data, air quality data from the EPA’s AQS API, and time series modeling, we analyze how smoke impact correlates with AQI for particulate matter. Analysis can be found in `common_analysis.ipynb`.
 
 ## Table of Contents
 1. [License](#license)
@@ -10,9 +10,10 @@ The goal of this project is to assess the impact of wildfire smoke on air qualit
 3. [Data Files](#data-files)
 4. [Data Schema](#data-schema)
 5. [Known Issues](#known-issues)
-6. [Instructions for Use](#instructions-for-use)
-7. [Functions](#functions)
-8. [Source Data](#source-data)
+6. [Special Considerations](#special-considerations)
+7. [Instructions for Use](#instructions-for-use)
+8. [Functions](#functions)
+9. [Source Data](#source-data)
 
 ---
 
@@ -86,6 +87,18 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 1. **Coordinate Transformation Errors**: Occasionally, some coordinates may not transform correctly due to missing or malformed geometry data. These instances are logged and skipped.
 3. **Missing Years in AQI Data**: AQI Monitor's weren't required until 1973 and were not fully installed until around the 1980s. There is a lot of missing data for AQIs.
 4. **Outliers in Smoke Impact**: Some wildfires, such as the Riverside Fire in 2020, create outliers in smoke impact, which may affect model stability and forecasting.
+   
+---
+
+## Special Considerations
+### Why PM2.5 and PM10? 
+I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
+
+### Why Scale the Final Visualization? 
+For the last visualization, scaling both AQI and smoke impact helped us see trends together over time, making it easier to compare them on the same chart. Without scaling, the two datasets would be tough to view side by side since they naturally operate on very different value ranges.
+
+### Why the Inverse Square Law for Smoke Estimates? 
+The [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law) was applied to calculate the smoke impact, which essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source; the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate.
    
 ---
 
