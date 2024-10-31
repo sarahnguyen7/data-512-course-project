@@ -50,9 +50,13 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ---
 
 ## Data Files
+### Input File:
 1. **`USGS_Wildland_Fire_Combined_Dataset.json`**: Wildfire dataset (GeoJSON) containing fire attributes and boundary information.
-2. **`particulate_aqi_summary.csv`**: Contains annual AQI data for PM10 and PM2.5 pollutants in Gresham, OR.
-3. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
+   
+### Output File:
+3. **`particulate_aqi_summary.csv`**: Contains annual AQI data for PM10 and PM2.5 pollutants in Gresham, OR.
+4. **`updated__aqi_summary.csv`**: Contains the same information as `particulate_aqi_summary.csv` but includes the Max AQI for each year.
+5. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
 
 ---
 
@@ -98,16 +102,16 @@ Python (3.8 or later): Ensure you have a compatible version of Python installed.
 
 ## Functions
 
-### `get_daily_aqi_for_particulates(start_year, end_year)`
+- `get_daily_aqi_for_particulates(start_year, end_year)`
 Retrieves daily AQI data for PM2.5 and PM10 pollutants in Multnomah County, OR, from the AQS API. Returns a DataFrame with annual AQI summaries.
 
-### `convert_ring_to_epsg4326(ring_data)`
+- `convert_ring_to_epsg4326(ring_data)`
 Transforms ESRI:102008 coordinates in wildfire boundaries to EPSG:4326. Caches results for efficiency.
 
-### `process_data_in_batches(reader, batch_size, max_distance)`
+- `process_data_in_batches(reader, batch_size, max_distance)`
 Processes wildfire data in batches, filtering by date and distance, and calculates smoke impact for each wildfire. 
 
-### `calculate_smoke_impact(acres, distance)`
+   `calculate_smoke_impact(acres, distance)`
 Calculates smoke impact based on acres burned and distance from Gresham, OR. Used to assess the severity of wildfire impacts on air quality.
 
 ---
