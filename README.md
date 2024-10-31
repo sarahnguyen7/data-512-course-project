@@ -65,9 +65,9 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 5. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
 
 ### Output Tables located in `output_tables`:
-6. **`AnnualAQIvsSmokeImpact.png`**: Contains a comparison of annual maximum AQI values and smoke impact estimates, both scaled for Gresham, OR. It is used to visualize the potential correlation between wildfire smoke and air quality levels in the area.
-7. **`TotalAcresBurned.png`**: This time series plot shows the total acres burned by wildfires each year within a 650-mile radius of Gresham, OR. It provides insights into wildfire activity trends over time and helps assess potential long-term impacts on air quality.
-8. **`HistogramofFireDistances1800.png`**: This histogram visualizes the number of wildfires occurring at various distances from Gresham, up to a maximum of 1800 miles, with bins spaced at 50-mile intervals. It highlights the distance distribution of wildfires, indicating which fires are close enough to impact air quality in Gresham, specifically marking the 650-mile cutoff used in the smoke impact model.
+6. **`TotalAcresBurned.png`**: This time series plot shows the total acres burned by wildfires each year within a 650-mile radius of Gresham, OR. It provides insights into wildfire activity trends over time and helps assess potential long-term impacts on air quality.
+7. **`HistogramofFireDistances1800.png`**: This histogram visualizes the number of wildfires occurring at various distances from Gresham, up to a maximum of 1800 miles, with bins spaced at 50-mile intervals. It highlights the distance distribution of wildfires, indicating which fires are close enough to impact air quality in Gresham, specifically marking the 650-mile cutoff used in the smoke impact model.
+8. **`AnnualAQIvsSmokeImpact.png`**: Contains a comparison of annual maximum AQI values and smoke impact estimates, both scaled for Gresham, OR. It is used to visualize the potential correlation between wildfire smoke and air quality levels in the area.
 
 ---
 
@@ -108,7 +108,7 @@ The [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_
 I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
 
 ### Why Scale the Final Visualization? 
-For the last visualization which involved comparing the annual AQI and the smoke impact, scaling both AQI and smoke impact helped us see trends together over time, making it easier to compare them on the same chart. Without scaling, the two datasets would be tough to view side by side since they naturally operate on very different value ranges.
+For `TotalAcresBurned.png` which involved comparing the annual AQI and the smoke impact, scaling both AQI and smoke impact helped us see trends together over time, making it easier to compare them on the same chart. Without scaling, the two datasets would be tough to view side by side since they naturally operate on very different value ranges.
    
 ---
 
