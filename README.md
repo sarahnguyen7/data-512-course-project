@@ -102,7 +102,7 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 
 ## Special Considerations
 ### Why the Inverse Square Law for Smoke Estimates? 
-The [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law) was applied to calculate the smoke impact, which essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source; the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate.
+The [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law) was applied to calculate the smoke impact, which essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source - the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate.
 
 ### Why PM2.5 and PM10? 
 I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
