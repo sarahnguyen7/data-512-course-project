@@ -6,16 +6,21 @@ The goal of this project is to assess the impact of wildfire smoke on air qualit
 
 ## Table of Contents
 1. [License](#license)
-2. [API Documentation](#api-documentation)
-3. [Data Files](#data-files)
-4. [Data Schema](#data-schema)
-5. [Known Issues](#known-issues)
-6. [Special Considerations](#special-considerations)
-7. [Instructions for Use](#instructions-for-use)
-8. [Functions](#functions)
-9. [Source Data](#source-data)
+2. [Source Data](#source-data)
+3. [API Documentation](#api-documentation)
+4. [Data Files](#data-files)
+5. [Data Schema](#data-schema)
+6. [Known Issues](#known-issues)
+7. [Special Considerations](#special-considerations)
+8. [Instructions for Use](#instructions-for-use)
+9. [Functions](#functions)
+   
 
 ---
+## Source Data
+- **US EPA Air Quality System (AQS) API**: For air quality data on PM10 and PM2.5 pollutants.
+- **[USGS Wildland Fire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81)**: Contains data on wildfires, including boundary coordinates, fire size, year, and more.
+
 
 ## License
 The code written was developed in combination of myself, ChatGPT, Dr. David. W. McDonald for use in Data 512, a UW MS Data Science Degree program. The authors of the code will be referenced in the specifc code they were used in. Licenses for all are listed down below. 
@@ -138,8 +143,3 @@ Calculates smoke impact based on acres burned and distance from Gresham, OR. Use
 
 ---
 
-## Source Data
-- **EPA AQS API**: For air quality data on PM10 and PM2.5 pollutants.
-- **USGS Wildland Fire Dataset**: Contains data on wildfires, including boundary coordinates, fire size, and year.
-
----
