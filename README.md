@@ -60,6 +60,9 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 5. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
 
 ### Output Tables:
+6. **`AnnualAQIvsSmokeImpact.png`**: Contains a comparison of annual maximum AQI values and smoke impact estimates, both scaled for Gresham, OR. It is used to visualize the potential correlation between wildfire smoke and air quality levels in the area.
+7. **`TotalAcresBurned.png`**: This time series plot shows the total acres burned by wildfires each year within a 650-mile radius of Gresham, OR. It provides insights into wildfire activity trends over time and helps assess potential long-term impacts on air quality.
+8. **`HistogramofFireDistances1800.png`**: This histogram visualizes the number of wildfires occurring at various distances from Gresham, up to a maximum of 1800 miles, with bins spaced at 50-mile intervals. It highlights the distance distribution of wildfires, indicating which fires are close enough to impact air quality in Gresham, specifically marking the 650-mile cutoff used in the smoke impact model.
 
 ---
 
