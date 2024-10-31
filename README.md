@@ -90,7 +90,6 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ---
 
 ## Instructions for Use
-**Install Required Libraries**:
 Python (3.8 or later): Ensure you have a compatible version of Python installed.
 
 `pip install pyproj==3.4.1`
