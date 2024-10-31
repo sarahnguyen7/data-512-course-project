@@ -79,17 +79,20 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ---
 
 ## Known Issues
-1. **API Rate Limits**: Throttling is implemented to avoid exceeding rate limits on the AQS API.
-2. **Coordinate Transformation Errors**: Occasionally, some coordinates may not transform correctly due to missing or malformed geometry data. These instances are logged and skipped.
-3. **Outliers in Smoke Impact**: Some wildfires, such as the Riverside Fire in 2020, create outliers in smoke impact, which may affect model stability and forecasting.
-
+1. **Coordinate Transformation Errors**: Occasionally, some coordinates may not transform correctly due to missing or malformed geometry data. These instances are logged and skipped.
+3. **Missing Years in AQI Data**: AQI Monitor's weren't required until 1973 and were not fully installed until around the 1980s. There is a lot of missing data for AQIs.
+4. **Outliers in Smoke Impact**: Some wildfires, such as the Riverside Fire in 2020, create outliers in smoke impact, which may affect model stability and forecasting.
+   
 ---
 
 ## Instructions for Use
-1. **Install Required Libraries**: Ensure all dependencies listed in `requirements.txt` are installed.
-2. **Run Data Retrieval**: Use the `get_daily_aqi_for_particulates` function to pull AQI data from the EPA API for desired years.
-3. **Process Wildfire Data**: Use `process_data_in_batches` to read and transform the wildfire dataset. Calculate the smoke impact and save results to `smoke_impact_estimates1.csv`.
-4. **Model and Forecast**: Load processed data and apply ARIMA time series forecasting to predict future smoke impacts.
+1. **Install Required Libraries**:
+Python (3.8 or later): Ensure you have a compatible version of Python installed.
+`pip install pyproj==3.4.1`
+`pip install geojson==2.5.0`
+`pip install matplotlib==3.6.2`
+`pip install scikit-learn==1.1.3`
+`pip install statsmodels==0.13.2`
 
 ---
 
