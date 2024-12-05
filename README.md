@@ -88,7 +88,7 @@ DATA-512-COURSE-PROJECT
 ```
 
 ## Source Data
-#### **US EPA Air Quality System (AQS) API**
+#### **[US EPA Air Quality System (AQS) API](https://aqs.epa.gov/data/api)**
 - **Description**: Provides historical air quality data, including measurements for pollutants such as PM2.5 and PM10. Data was used to correlate smoke impacts with air quality trends in Gresham, OR.
 - **Terms of Use**: The data is publicly accessible and provided by the U.S. Environmental Protection Agency. Users must adhere to their **[API Terms of Use](https://aqs.epa.gov/aqsweb/documents/data_api_terms_of_use.html)**, which outline restrictions on commercial use and emphasize proper attribution in research and applications.
 
