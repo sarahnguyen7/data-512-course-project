@@ -2,7 +2,35 @@
 # Wildfire Smoke Impact and AQI Analysis
 
 ## Project Goal
-The goal of this project is to assess the impact of wildfire smoke on air quality in Gresham, OR, from 1961 to 2021 and forecast potential trends through 2050. Using geographic wildfire data, air quality data from the EPA’s AQS API, and time series modeling, we analyze how smoke impact correlates with AQI for particulate matter. Analysis can be found in `common_analysis.ipynb`.
+### Updated Project Goals and Purpose of Analysis
+
+The project initially focused on assessing the impact of wildfire smoke on air quality in Gresham, OR, from 1961 to 2021, with the aim of forecasting potential trends through 2050. This phase of the analysis was divided into three notebooks to enhance modularity and clarity:
+
+- **`common_analysis_pt1A_smoke_estimate.ipynb`**: This notebook calculates the annual smoke impact from wildfires using geographic wildfire data from the USGS Wildland Fire Dataset. It applies the inverse square law to quantify smoke dispersion based on fire size and proximity to Gresham, providing a foundational estimate of smoke's local impact.
+  
+- **`common_analysis_pt1B_AQI.ipynb`**: This notebook examines the relationship between the calculated smoke impact and air quality data (PM2.5 and PM10) from the EPA’s AQS API. It analyzes historical trends in air quality to assess how wildfire smoke has affected particulate matter levels over time.
+
+- **`common_analysis_pt1C_forecasting_and_visualizations.ipynb`**: This notebook uses time-series forecasting with Prophet to project future smoke impact and associated air quality trends through 2050. It also includes visualizations to summarize historical and forecasted trends.
+
+### Expanding the Scope to Respiratory Mortality
+
+Following the initial analysis on smoke impact and air quality, the project expanded its scope to explore the relationship between wildfire smoke and **respiratory mortality** in Gresham, OR. This analysis was carried out in two distinct notebooks, ensuring a structured and systematic approach to handling the data and modeling tasks:
+
+- **`social_impact_preprocessing.ipynb`**: This notebook focused on preparing the data necessary for forecasting trends in respiratory mortality. It included:
+  - **IHME Data Integration**: Extracting respiratory mortality rates (1980–2014) for Multnomah County and filtering relevant diseases linked to PM2.5 and PM10 exposure, such as COPD and interstitial lung diseases.
+  - **Population Data Processing**: Using population data from FRED to convert mortality rates into absolute annual mortality counts for accurate trend analysis.
+  - **Data Cleaning**: Resolving missing values and aligning mortality data with annual smoke impact estimates.
+
+- **`social_impact_execution.ipynb`**: This notebook implemented the analysis and forecasting:
+  - **Correlation Analysis**: Performed Pearson correlation to identify respiratory illnesses most affected by wildfire smoke, showing strong positive correlations for conditions like COPD, chronic respiratory diseases, and interstitial lung diseases.
+  - **Forecasting**: Using Prophet & linear regression, trends in respiratory mortality were forecasted for 2025–2050 based on historical data and smoke impact estimates.
+  - **Visualization**: Generated clear and interpretable charts to present historical trends and forecasted outcomes for respiratory mortality, highlighting critical insights.
+
+NOTE: Steps to reproduce each notebook are written in the markdown of the notebook. Begin in the order you see here, starting with `common_analysis_pt1A_smoke_estimate.ipynb`. If you only want to do wildfire analysis, do not do the extension analysis. 
+
+This extended analysis bridges the gap between environmental and health data science, demonstrating the real-world implications of wildfire smoke on community health in Gresham, OR.
+
+These analyses collectively serve as a foundation for crafting actionable recommendations for public health and wildfire mitigation strategies in Gresham, OR.
 
 ## Table of Contents
 1. [License](#license)
@@ -17,10 +45,64 @@ The goal of this project is to assess the impact of wildfire smoke on air qualit
    
 
 ---
-## Source Data
-- **US EPA Air Quality System (AQS) API**: For air quality data on PM10 and PM2.5 pollutants.
-- **[USGS Wildland Fire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81)**: Contains data on wildfires, including boundary coordinates, fire size, year, and more.
+```
+DATA-512-COURSE-PROJECT
+│
+├── input_data/                # Raw data files
+│   ├── IHME_USA_COUNTY_RESP_DISEASE_MORTALITY.csv
+│   ├── ORMULT1POP.csv
+│   ├── wildfire/              # Subdirectory for wildfire-related scripts and data
+│   │   ├── __init__.py
+│   │   ├── Reader.py
+│
+├── intermediary_files/        # Intermediate data processing outputs
+│   ├── particulate_aqi_summary.csv
+│   ├── smoke_impact_estimates1.csv
+│   ├── updated_aqi_summary.csv
+│
+├── output_files/              # Final output files (visualizations, forecasts)
+│   ├── AnnualAQIvsSmokeImpact.png
+│   ├── ChronicRespiratoryMortalityForecast.png
+│   ├── CorrelationAnalysis_RespiratoryvsSmoke.png
+│   ├── HistogramofFireDistances1800.png
+│   ├── SmokeImpactForecast.png
+│   ├── TotalAcresBurned.png
+│
+├── wildfire/                  # Scripts related to wildfire data handling
+│   ├── __init__.py
+│   ├── Reader.py
+│
+├── writeup_reports/           # Reports and write-ups for analysis
+│   ├── Common_Analysis_Write_Up.pdf
+│   ├── Final_Report.pdf
+│   ├── common_analysis_pt1A_smoke_estimate.ipynb
+│   ├── common_analysis_pt1B_AQI_.ipynb
+│   ├── common_analysis_pt1C_forecasting_and_plots.ipynb
+│
+├── LICENSE                    # Project license
+├── README.md                  # Project overview
+│
+├── social_impact_execution.ipynb  # Execution-related notebook
+├── social_impact_preprocessing.ipynb  # Preprocessing-related notebook
+```
 
+## Source Data
+#### **US EPA Air Quality System (AQS) API**
+- **Description**: Provides historical air quality data, including measurements for pollutants such as PM2.5 and PM10. Data was used to correlate smoke impacts with air quality trends in Gresham, OR.
+- **Terms of Use**: The data is publicly accessible and provided by the U.S. Environmental Protection Agency. Users must adhere to their **[API Terms of Use](https://aqs.epa.gov/aqsweb/documents/data_api_terms_of_use.html)**, which outline restrictions on commercial use and emphasize proper attribution in research and applications.
+
+#### **[USGS Wildland Fire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81)**
+- **Description**: A comprehensive dataset of U.S. wildfires, containing attributes like boundary coordinates, fire size, year, and origin. Used to calculate smoke impacts by estimating the distance and intensity of wildfires affecting Gresham, OR.
+Note: The data was too big for GitHub so it was removed. Add it back into wildfire.
+- **Terms of Use**: This dataset is part of the public domain as provided by the U.S. Geological Survey (USGS). Users are encouraged to cite the source when using or sharing the data, as outlined in their **[data policies](https://www.usgs.gov/about/organization/science-support/science-analytics-and-synthesis/policies-and-notices)**.
+
+#### **[IHME USA County-Level Mortality Dataset](https://ghdx.healthdata.org/record/ihme-data/united-states-chronic-respiratory-disease-mortality-rates-county-1980-2014)**
+- **Description**: Chronic respiratory disease mortality rates by county from 1980–2014, provided by the Institute for Health Metrics and Evaluation (IHME). This dataset was filtered for Multnomah County to assess respiratory mortality linked to wildfire smoke.
+- **Terms of Use**: Available under the **[IHME Free-of-Charge Non-Commercial User Agreement](https://ghdx.healthdata.org/data-terms-use)**. The data can be used, shared, or modified for non-commercial purposes, provided proper attribution is given.
+
+#### **[Federal Reserve Economic Data (FRED)](https://alfred.stlouisfed.org/series?seid=ORMULT1POP)**
+- **Description**: Provides population data for Multnomah County, used to calculate actual mortality counts from the IHME mortality rate data.
+- **Terms of Use**: FRED data is free for educational and non-commercial use. Users must comply with the **[FRED® Terms of Use](https://fred.stlouisfed.org/legal)**, ensuring proper attribution when integrating their data into research or projects.
 
 ## License
 The code written was developed in combination of myself, ChatGPT, Dr. David. W. McDonald for use in Data 512, a UW MS Data Science Degree program. The authors of the code will be referenced in the specifc code they were used in. Licenses for all are listed down below. 
@@ -59,15 +141,21 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ### Input File:
 1. **`USGS_Wildland_Fire_Combined_Dataset.json`**: Wildfire dataset (GeoJSON) containing fire attributes and boundary information.
    
-### Output Files:
+### Intermediary Files:
 3. **`particulate_aqi_summary.csv`**: Contains annual AQI data for PM10 and PM2.5 pollutants in Gresham, OR.
 4. **`updated__aqi_summary.csv`**: Contains the same information as `particulate_aqi_summary.csv` but includes the Max AQI for each year.
 5. **`smoke_impact_estimates1.csv`**: Summary of annual smoke impact estimates per wildfire based on distance and acres burned.
 
-### Output Tables located in `output_tables`:
+### Output Files located in `output_tables`:
 6. **`TotalAcresBurned.png`**: This time series plot shows the total acres burned by wildfires each year within a 650-mile radius of Gresham, OR. It provides insights into wildfire activity trends over time and helps assess potential long-term impacts on air quality.
 7. **`HistogramofFireDistances1800.png`**: This histogram visualizes the number of wildfires occurring at various distances from Gresham, up to a maximum of 1800 miles, with bins spaced at 50-mile intervals. It highlights the distance distribution of wildfires, indicating which fires are close enough to impact air quality in Gresham, specifically marking the 650-mile cutoff used in the smoke impact model.
 8. **`AnnualAQIvsSmokeImpact.png`**: Contains a comparison of annual maximum AQI values and smoke impact estimates, both scaled for Gresham, OR. It is used to visualize the potential correlation between wildfire smoke and air quality levels in the area.
+9. **` SmokeImpactForecast.png`**: This visualization presents the forecasted smoke impact trends for Gresham, OR, from 2025 to 2050, based on historical data. It includes confidence intervals to indicate the range of possible outcomes, helping stakeholders understand future risks and uncertainties.
+
+10. **` ChronicRespiratoryMortalityForecast.png`** This time series plot shows forecasted mortality rates for chronic respiratory diseases, such as COPD and interstitial lung disease, from 2025 to 2050. It illustrates the projected health impact of increasing wildfire smoke exposure on Gresham’s population.
+
+11. **` CorrelationAnalysis_RespiratoryvsSmoke.png`**: This scatterplot matrix displays Pearson correlation results between wildfire smoke impact and respiratory mortality rates for specific illnesses. It helps identify the diseases most closely associated with smoke exposure, such as chronic respiratory disease and COPD, offering valuable insights for targeted public health interventions.
+
 
 ---
 
@@ -94,15 +182,20 @@ For additional details on API usage, refer to the EPA AQS [API documentation](ht
 ---
 
 ## Known Issues
+For the common_analysis portion:
 1. **Coordinate Transformation Errors**: Occasionally, some coordinates may not transform correctly due to missing or malformed geometry data. These instances are logged and skipped.
 3. **Missing Years in AQI Data**: AQI Monitor's weren't required until 1973 and were not fully installed until around the 1980s. There is a lot of missing data for AQIs.
 4. **Outliers in Smoke Impact**: Some wildfires, such as the Riverside Fire in 2020, create outliers in smoke impact, which may affect model stability and forecasting.
+
+For the social impact extension:
+
    
 ---
 
 ## Special Considerations
 ### Why the Inverse Square Law for Smoke Estimates? 
-The [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law) was applied to calculate the smoke impact, which essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source - the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate.
+While there are more complex atmospheric modeling tools available, they require more sophisticated input data, like prevailing winds, to quantify things like the smoke estimate. Instead, we will be using the [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law), as it is a straightforward method to calculate the smoke impact with the data we have available.
+This is because the inverse square law essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source - the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate. 
 
 ### Why PM2.5 and PM10? 
 I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
@@ -125,21 +218,7 @@ Python (3.8 or later): Ensure you have a compatible version of Python installed.
 
 `pip install statsmodels==0.13.2`
 
----
+`pip install seaborn==0.12.2`
 
-## Functions
-
-- `get_daily_aqi_for_particulates(start_year, end_year)`
-Retrieves daily AQI data for PM2.5 and PM10 pollutants in Multnomah County, OR, from the AQS API. Returns a DataFrame with annual AQI summaries.
-
-- `convert_ring_to_epsg4326(ring_data)`
-Transforms ESRI:102008 coordinates in wildfire boundaries to EPSG:4326. Caches results for efficiency.
-
-- `process_data_in_batches(reader, batch_size, max_distance)`
-Processes wildfire data in batches, filtering by date and distance, and calculates smoke impact for each wildfire. 
-
-   `calculate_smoke_impact(acres, distance)`
-Calculates smoke impact based on acres burned and distance from Gresham, OR. Used to assess the severity of wildfire impacts on air quality.
-
----
+`pip install prophet==1.1`
 
