@@ -194,8 +194,25 @@ For the social impact extension:
 
 ## Special Considerations
 ### Why the Inverse Square Law for Smoke Estimates? 
-While there are more complex atmospheric modeling tools available, they require more sophisticated input data, like prevailing winds, to quantify things like the smoke estimate. Instead, we will be using the [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law), as it is a straightforward method to calculate the smoke impact with the data we have available.
-This is because the inverse square law essentially means that as the distance from a fire increases, the smoke concentration decreases exponentially. This is similar to how light or sound spreads out from its source - the further you are, the more the impact fades. So, by using this law, we’re accounting for the drop in smoke concentration the further it travels, giving a more realistic impact estimate. 
+To create the smoke estimate/impact of wildfire smoke on Gresham, Oregon, I applied the [inverse square law]([inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law)), a principle that models how intensity decreases as distance from a source increases. Similar to how light or sound diminishes as it spreads outward, wildfire smoke disperses as it travels further from its source, resulting in lower concentrations at greater distances. By incorporating this principle, the smoke estimate accounts for the physical reality of dispersion, providing a more realistic measure of smoke intensity in Gresham.
+For example:
+A fire burning 10 miles away from Gresham will have a far greater impact than a similarly sized fire burning 100 miles away.
+Larger fires, regardless of distance, contribute more smoke to the overall impact. For instance, a fire burning 1,000 acres at 50 miles will still contribute significantly compared to a smaller 50-acre fire at the same distance.
+Formula and Calculation
+The formula I used for the smoke estimate is:
+
+Variables:
+Acres Burned: Larger wildfires release more smoke, which increases their potential impact on air quality.
+Distance from Fire: As smoke travels farther from the fire, it disperses and loses intensity. Squaring the distance emphasizes this dispersion effect, as smoke at twice the distance will have only a quarter of the impact.
+This formula was applied to every wildfire occurring within 650 miles of Gresham, capturing both nearby and distant fires that might affect the city. For each fire, I calculated its individual smoke impact and then aggregated these values across all fires within a given year to obtain the annual smoke impact.
+Why Use the Inverse Square Law?
+While advanced atmospheric models like HYSPLIT or BlueSky account for meteorological factors (like wind direction, topography), these require extensive computational resources and meteorological data, which were not feasible time-wise or available for this study. The inverse square law offers a straightforward estimate of smoke dispersion based on the size of the fire and its distance from the city. This method ensures that both proximity and fire size are appropriately weighted, aligning the model with how smoke physically spreads through the atmosphere. By aggregating the annual impacts, the model captures year-to-year variations in wildfire activity and provides a robust measure of smoke exposure for trend analysis given the data and time we had for the project.
+Data Processing and Integration
+To ensure accurate results, wildfire data was preprocessed as follows:
+Coordinate Transformation: Fire polygons from the ScienceBase dataset were converted from the ESRI:102008 coordinate system to EPSG:4326 (decimal degrees). This enabled consistent distance calculations between fire locations and Gresham.
+Distance Calculations: Distances between each wildfire and Gresham were calculated in decimal degrees, using Gresham's geographic coordinates as the reference point.
+Annual Aggregation: Once the smoke impact for each fire was calculated, impacts were summed across all wildfires in a year to produce the total annual smoke impact.
+
 
 ### Why PM2.5 and PM10? 
 I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
