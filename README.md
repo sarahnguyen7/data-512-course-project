@@ -31,7 +31,7 @@ For extension analysis, begin with `social_impact_preprocessing.ipynb`.
 
 These analyses collectively serve as a foundation for crafting actionable recommendations for public health and wildfire mitigation strategies in Gresham, OR.
 
-In this project, I aimed to answer two main research questions: What is the future smoke impact of wildfires based on historical data? and How does this smoke impact affect respiratory mortality in Gresham, Oregon? Through my analysis, I found that both wildfire smoke impact and respiratory mortality rates are expected to rise significantly by 2050. Chronic respiratory diseases, COPD, and interstitial lung disease showed the strongest correlations with smoke exposure, highlighting the serious public health risks that wildfires pose to the region.
+At the beginning of this project, I aimed to answer two main research questions: What is the future smoke impact of wildfires based on historical data? How does this smoke impact affect respiratory mortality in Gresham, Oregon? Through my analysis, I found that both wildfire smoke impact and respiratory mortality rates are expected to rise significantly by 2050. Chronic respiratory diseases, COPD, and interstitial lung disease showed the strongest correlations with smoke exposure, highlighting the serious public health risks that wildfires pose to the region.
 
 ## Table of Contents
 1. [License](#license)
