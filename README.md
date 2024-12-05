@@ -217,7 +217,7 @@ Annual Aggregation: Once the smoke impact for each fire was calculated, impacts 
 ### Why PM2.5 and PM10? 
 I specifically chose PM2.5 and PM10 as the core AQI parameters because these two are widely regarded as the best indicators of air quality impacts from wildfire smoke. PM2.5, especially, is a good gauge for smoke and can penetrate deeply into the lungs, affecting human health. Both parameters allow for a targeted look at the pollution type most associated with wildfire activity.
 
-### Why Scale the Final Visualization? 
+### Why Scale the Total Acres Burned Visualization? 
 For `TotalAcresBurned.png` which involved comparing the annual AQI and the smoke impact, scaling both AQI and smoke impact helped us see trends together over time, making it easier to compare them on the same chart. Without scaling, the two datasets would be tough to view side by side since they naturally operate on very different value ranges.
    
 ---
