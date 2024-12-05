@@ -26,11 +26,12 @@ Following the initial analysis on smoke impact and air quality, the project expa
   - **Forecasting**: Using Prophet & linear regression, trends in respiratory mortality were forecasted for 2025–2050 based on historical data and smoke impact estimates.
   - **Visualization**: Generated clear and interpretable charts to present historical trends and forecasted outcomes for respiratory mortality, highlighting critical insights.
 
-NOTE: Steps to reproduce each notebook are written in the markdown of the notebook. Begin in the order you see here, starting with `common_analysis_pt1A_smoke_estimate.ipynb`. If you only want to do wildfire analysis, do not do the extension analysis. 
-
-This extended analysis bridges the gap between environmental and health data science, demonstrating the real-world implications of wildfire smoke on community health in Gresham, OR.
+NOTE: Steps to reproduce each notebook are written in the markdown of the notebook. Begin in the order you see here, starting with `common_analysis_pt1A_smoke_estimate.ipynb`, working your way up to `common_analysis_pt1C_forecasting_and_visualizations.ipynb`. If you only want to do wildfire analysis, do not do the extension analysis. 
+For extension analysis, begin with `social_impact_preprocessing.ipynb`.
 
 These analyses collectively serve as a foundation for crafting actionable recommendations for public health and wildfire mitigation strategies in Gresham, OR.
+
+In this project, I aimed to answer two main research questions: What is the future smoke impact of wildfires based on historical data? and How does this smoke impact affect respiratory mortality in Gresham, Oregon? Through my analysis, I found that both wildfire smoke impact and respiratory mortality rates are expected to rise significantly by 2050. Chronic respiratory diseases, COPD, and interstitial lung disease showed the strongest correlations with smoke exposure, highlighting the serious public health risks that wildfires pose to the region.
 
 ## Table of Contents
 1. [License](#license)
@@ -194,12 +195,16 @@ For the social impact extension:
 
 ## Special Considerations
 ### Why the Inverse Square Law for Smoke Estimates? 
-To create the smoke estimate/impact of wildfire smoke on Gresham, Oregon, I applied the [inverse square law]([inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law)), a principle that models how intensity decreases as distance from a source increases. Similar to how light or sound diminishes as it spreads outward, wildfire smoke disperses as it travels further from its source, resulting in lower concentrations at greater distances. By incorporating this principle, the smoke estimate accounts for the physical reality of dispersion, providing a more realistic measure of smoke intensity in Gresham.
+To create the smoke estimate/impact of wildfire smoke on Gresham, Oregon, I applied the [inverse square law](https://energyeducation.ca/encyclopedia/Inverse_square_law)), a principle that models how intensity decreases as distance from a source increases. Similar to how light or sound diminishes as it spreads outward, wildfire smoke disperses as it travels further from its source, resulting in lower concentrations at greater distances. By incorporating this principle, the smoke estimate accounts for the physical reality of dispersion, providing a more realistic measure of smoke intensity in Gresham.
+
 For example:
 A fire burning 10 miles away from Gresham will have a far greater impact than a similarly sized fire burning 100 miles away.
 Larger fires, regardless of distance, contribute more smoke to the overall impact. For instance, a fire burning 1,000 acres at 50 miles will still contribute significantly compared to a smaller 50-acre fire at the same distance.
 Formula and Calculation
 The formula I used for the smoke estimate is:
+
+Smoke Impact = Acres Burned / (Distance from Gresham)^2
+
 
 Variables:
 Acres Burned: Larger wildfires release more smoke, which increases their potential impact on air quality.
@@ -219,8 +224,20 @@ I specifically chose PM2.5 and PM10 as the core AQI parameters because these two
 
 ### Why Scale the Total Acres Burned Visualization? 
 For `TotalAcresBurned.png` which involved comparing the annual AQI and the smoke impact, scaling both AQI and smoke impact helped us see trends together over time, making it easier to compare them on the same chart. Without scaling, the two datasets would be tough to view side by side since they naturally operate on very different value ranges.
-   
+
+### Why Prophet for Model Forecasting?
+While there are existing models for analyzing wildfire smoke impact (which you can learn about in my final report located in `writeup-reports/Final_Report(1).pdf`, most are not open source, and they are not designed to be forecasting tools. That is why I have employed Prophet, a time-series forecasting tool developed by Meta. It is well-suited for handling seasonal trends and data gaps, making it ideal for generating reliable forecasts of smoke impact and associated mortality. It is specifically designed to capture non-linear trends with yearly seasonality and is robust against outliers, missing data, and significant fluctuations, much like the spike in smoke impact during the 2017 and 2020 wildfires.
+
+### Limitations
+
+Several limitations could affect the accuracy and applicability of the findings in this study. One major limitation is the data coverage. The mortality data used in the analysis only extends to 2014, which means recent trends in respiratory health impacts, especially given the increasing frequency and intensity of wildfires in recent years, are not captured. This gap restricts the ability to fully understand how more recent wildfire activity might influence respiratory health outcomes.
+
+The absence of hospital admission data is another key limitation. By focusing solely on mortality, the study does not capture the broader spectrum of health impacts associated with wildfire smoke exposure, such as increased emergency room visits, long-term respiratory issues, or non-fatal exacerbations of chronic diseases. Including this data could provide a more comprehensive understanding of the health burden caused by wildfire smoke. 
+
+Lastly, the lagged health effects of smoke exposure present a challenge. Many of the long-term impacts of PM2.5 exposure, such as chronic respiratory diseases, may take years to fully manifest. This delay can lead to an underestimation of the true health burden of wildfire smoke, as these effects may not be immediately visible within the study’s time frame.
+
 ---
+
 
 ## Instructions for Use
 Python (3.8 or later): Ensure you have a compatible version of Python installed.
