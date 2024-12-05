@@ -76,13 +76,13 @@ DATA-512-COURSE-PROJECT
 ├── writeup_reports/           # Reports and write-ups for analysis
 │   ├── Common_Analysis_Write_Up.pdf
 │   ├── Final_Report.pdf
-│   ├── common_analysis_pt1A_smoke_estimate.ipynb
-│   ├── common_analysis_pt1B_AQI_.ipynb
-│   ├── common_analysis_pt1C_forecasting_and_plots.ipynb
 │
 ├── LICENSE                    # Project license
 ├── README.md                  # Project overview
 │
+├── common_analysis_pt1A_smoke_estimate.ipynb
+├── common_analysis_pt1B_AQI_.ipynb
+├── common_analysis_pt1C_forecasting_and_plots.ipynb
 ├── social_impact_execution.ipynb  # Execution-related notebook
 ├── social_impact_preprocessing.ipynb  # Preprocessing-related notebook
 ```
